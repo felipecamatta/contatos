@@ -24,4 +24,19 @@ public class ContatoService {
         return contato;
     }
 
+    public Contato update(Long id, Contato contato) {
+        Contato contatoUpdate = contatoRepository.findById(id).orElseThrow(() -> new RuntimeException("Contato não encontrado"));
+
+        contatoUpdate.setNome(contato.getNome());
+        contatoUpdate.setTelefone(contato.getTelefone());
+
+        contatoUpdate = this.contatoRepository.save(contatoUpdate);
+
+        return contatoUpdate;
+    }
+
+    public void delete(Long id) {
+        contatoRepository.deleteById(id);
+    }
+
 }

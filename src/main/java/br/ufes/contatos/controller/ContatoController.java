@@ -17,13 +17,23 @@ public class ContatoController {
     }
 
     @GetMapping
-    public List<Contato> getAll(){
+    public List<Contato> getAll() {
         return contatoService.getAll();
     }
 
     @PostMapping
     public Contato save(@RequestBody Contato contato) {
         return contatoService.save(contato);
+    }
+
+    @PutMapping("{id}")
+    public Contato update(@PathVariable Long id, @RequestBody Contato contato) {
+        return contatoService.update(id, contato);
+    }
+
+    @DeleteMapping("{id}")
+    public void delete(@PathVariable Long id) {
+        contatoService.delete(id);
     }
 
 }
